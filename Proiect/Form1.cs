@@ -19,6 +19,15 @@ namespace Proiect
             this.baraUtilizatori1.SetTitlu(titlu);
         }
 
+        private void AddListButton_Click(object sender, EventArgs e)
+        {
+            this.AddListButton.Visible = false;
+            CreateNewList();
+        }
 
+        private void CreateNewList()
+        {
+            
+        }
     }
 }
