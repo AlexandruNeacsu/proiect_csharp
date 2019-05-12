@@ -1,6 +1,6 @@
-﻿namespace Proiect
+﻿namespace Proiect.Controls.List
 {
-    partial class List
+    partial class AddList
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,33 +29,36 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 20);
+            this.textBox1.Location = new System.Drawing.Point(0, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(143, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // button1
+            // AddButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 300);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Adauga card nou";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddButton.Location = new System.Drawing.Point(0, 30);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(102, 23);
+            this.AddButton.TabIndex = 1;
+            this.AddButton.Text = "Adauga";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // List
+            // AddList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.textBox1);
-            this.Name = "List";
-            this.Size = new System.Drawing.Size(257, 335);
+            this.Name = "AddList";
+            this.Size = new System.Drawing.Size(150, 60);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.AddList_Paint);
+            this.Leave += new System.EventHandler(this.AddList_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -63,7 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button AddButton;
     }
 }

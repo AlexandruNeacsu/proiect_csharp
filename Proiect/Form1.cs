@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Proiect.Controls.List;
+using Proiect.Controls;
 
 namespace Proiect
 {
@@ -21,13 +23,8 @@ namespace Proiect
 
         private void AddListButton_Click(object sender, EventArgs e)
         {
-            this.AddListButton.Visible = false;
-            CreateNewList();
-        }
-
-        private void CreateNewList()
-        {
-            
+            AddList list = new AddList(AddListButton);
+            this.selectableFlowLayoutPanel1.Controls.Add(list);
         }
     }
 }

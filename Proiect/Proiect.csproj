@@ -73,16 +73,25 @@
     <Compile Include="Controls\Cardcs.Designer.cs">
       <DependentUpon>Cardcs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\List\AddList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\List\AddList.Designer.cs">
+      <DependentUpon>AddList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectableFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\List.cs">
+    <Compile Include="Controls\List\List.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\List.Designer.cs">
+    <Compile Include="Controls\List\List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -93,10 +102,13 @@
     <EmbeddedResource Include="Controls\Cardcs.resx">
       <DependentUpon>Cardcs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\List\AddList.resx">
+      <DependentUpon>AddList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\List.resx">
+    <EmbeddedResource Include="Controls\List\List.resx">
       <DependentUpon>List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
