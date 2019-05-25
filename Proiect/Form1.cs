@@ -14,7 +14,11 @@ namespace Proiect
 {
     public partial class Form1 : Form
     {
+        static public string Provider = "Provider = Microsoft.ACE.OLEDB.16.0; Data Source = proiect_csharp.accdb";
+
         public string titlu = "Proiect C#";
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -23,8 +27,9 @@ namespace Proiect
 
         private void AddListButton_Click(object sender, EventArgs e)
         {
-            AddList list = new AddList(AddListButton);
-            this.selectableFlowLayoutPanel1.Controls.Add(list);
+            AddList addList = new AddList(AddListButton);
+            this.selectableFlowLayoutPanel1.Controls.Add(addList);
+            addList.Focus();   //focus mai intai pe control, si dupa Select pe textbox in constructor
         }
     }
 }

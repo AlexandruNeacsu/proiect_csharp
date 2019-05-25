@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace Proiect.Controls.List
 {
@@ -18,23 +19,60 @@ namespace Proiect.Controls.List
             addListButton = button;
             InitializeComponent();
 
-            this.ActiveControl = this.textBox1;
+            addListButton.Visible = false;
+            this.textBox1.Select();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            string nume = this.textBox1.Text;
 
+            if (nume != "")
+            {
+                OleDbConnection connection = new OleDbConnection(Form1.Provider);
+                OleDbCommand command = new OleDbCommand();
+
+                command.Connection = connection;
+
+                try
+                {
+                    connection.Open();
+                    command.Transaction = connection.BeginTransaction();
+
+                    command.CommandText = "INSERT INTO liste (nume) VALUES (@nume)";
+
+                    command.Parameters.Add("nume", OleDbType.Char).Value = nume;
+
+                    command.ExecuteNonQuery();
+                    command.Transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    command.Transaction.Rollback();
+                }
+                finally
+                {
+                    connection.Close();
+                    this.Exit();
+                }
+
+            }
+            else
+            {
+                errorProvider1.SetError(textBox1, "Va rugam sa setati un nume!");
+            }
         }
 
         private void AddList_Leave(object sender, EventArgs e)
         {
-            this.addListButton.Visible = true;
-            this.Dispose();
+            this.Exit();
         }
 
-        private void AddList_Paint(object sender, PaintEventArgs e)
+        private void Exit()
         {
-            this.textBox1.Select();
+            this.addListButton.Visible = true;
+            this.Dispose();
         }
     }
 }
