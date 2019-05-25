@@ -45,6 +45,7 @@ namespace Proiect.Controls.List
 
                     command.ExecuteNonQuery();
                     command.Transaction.Commit();
+
                 }
                 catch (Exception ex)
                 {
@@ -54,7 +55,12 @@ namespace Proiect.Controls.List
                 finally
                 {
                     connection.Close();
-                    this.Exit();
+                    
+                    //refresh the layout panel
+                    Form1 parent = (Form1)this.ParentForm;
+                    parent.LoadLists();
+
+                    this.addListButton.Visible = true;
                 }
 
             }
@@ -66,13 +72,7 @@ namespace Proiect.Controls.List
 
         private void AddList_Leave(object sender, EventArgs e)
         {
-            this.Exit();
-        }
-
-        private void Exit()
-        {
             this.addListButton.Visible = true;
-            this.Dispose();
         }
     }
 }

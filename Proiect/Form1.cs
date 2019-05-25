@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proiect.Controls.List;
 using Proiect.Controls;
+using System.Data.OleDb;
 
 namespace Proiect
 {
@@ -23,6 +24,7 @@ namespace Proiect
         {
             InitializeComponent();
             this.baraUtilizatori1.SetTitlu(titlu);
+            this.LoadLists();
         }
 
         private void AddListButton_Click(object sender, EventArgs e)
@@ -30,6 +32,48 @@ namespace Proiect
             AddList addList = new AddList(AddListButton);
             this.selectableFlowLayoutPanel1.Controls.Add(addList);
             addList.Focus();   //focus mai intai pe control, si dupa Select pe textbox in constructor
+        }
+
+        public void LoadLists()
+        {
+            OleDbConnection connection = new OleDbConnection(Form1.Provider);
+
+            string cmdText = "SELECT id,nume FROM Liste";
+
+            OleDbCommand command = new OleDbCommand(cmdText, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                this.selectableFlowLayoutPanel1.SuspendLayout();
+                this.selectableFlowLayoutPanel1.Controls.Clear();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["id"].ToString());
+                    string listName = reader["nume"].ToString();
+
+                    List list = new List(id, listName);
+
+                    this.selectableFlowLayoutPanel1.Controls.Add(list);
+                }
+
+
+                reader.Close();
+
+                this.selectableFlowLayoutPanel1.Controls.Add(this.AddListButton);
+                this.selectableFlowLayoutPanel1.ResumeLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
