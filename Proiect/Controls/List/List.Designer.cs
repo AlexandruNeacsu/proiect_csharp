@@ -62,6 +62,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(306, 79);
             this.flowLayoutPanel1.TabIndex = 2;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // containerButon
             // 

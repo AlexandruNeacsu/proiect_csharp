@@ -79,6 +79,9 @@
     <Compile Include="Controls\Card\Card.Designer.cs">
       <DependentUpon>Card.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Card\CardPreview.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\List\AddList.cs">
       <SubType>UserControl</SubType>
     </Compile>

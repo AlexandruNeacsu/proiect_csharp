@@ -25,6 +25,8 @@ namespace Proiect
             InitializeComponent();
 
             this.titluLb.Text = nume;
+
+            this.LoadCards();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +65,49 @@ namespace Proiect
 
             this.flowLayoutPanel1.Controls.Add(addCard);
 
+        }
+
+        public void LoadCards()
+        {
+            OleDbConnection connection = new OleDbConnection(Form1.Provider);
+
+            string cmdText = "SELECT * FROM Cards WHERE id_lista = " + this.id;
+
+            OleDbCommand command = new OleDbCommand(cmdText, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                this.flowLayoutPanel1.SuspendLayout();
+                this.flowLayoutPanel1.Controls.Clear();
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["id"].ToString());
+                    string numeCard = reader["nume"].ToString();
+                    string descriere = reader["descriere"].ToString();
+
+                    CardPreview cardPreview = new CardPreview(id, numeCard, descriere);
+
+                    this.flowLayoutPanel1.Controls.Add(cardPreview);
+                }
+
+
+                reader.Close();
+
+                this.flowLayoutPanel1.Controls.Add(this.containerButon);
+                this.flowLayoutPanel1.ResumeLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }
