@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Proiect
+namespace Proiect.Controls.Card
 {
-    public partial class Cardcs : UserControl
+    public partial class Card : Form
     {
-        public Cardcs()
+        public Card()
         {
             InitializeComponent();
         }

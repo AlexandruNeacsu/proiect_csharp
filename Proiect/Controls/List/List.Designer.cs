@@ -31,31 +31,45 @@
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.containerButon = new System.Windows.Forms.Panel();
             this.titluLb = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.containerButon.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 164);
+            this.button1.Location = new System.Drawing.Point(4, 41);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 28);
             this.button1.TabIndex = 1;
             this.button1.Text = "Adauga card nou";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.containerButon);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(16, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(303, 84);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(306, 79);
             this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // containerButon
+            // 
+            this.containerButon.Controls.Add(this.button1);
+            this.containerButon.Location = new System.Drawing.Point(3, 3);
+            this.containerButon.Name = "containerButon";
+            this.containerButon.Size = new System.Drawing.Size(300, 73);
+            this.containerButon.TabIndex = 2;
             // 
             // titluLb
             // 
@@ -77,7 +91,7 @@
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -85,14 +99,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.titluLb);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "List";
-            this.Size = new System.Drawing.Size(331, 211);
+            this.Size = new System.Drawing.Size(325, 133);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.containerButon.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -105,5 +122,6 @@
         private System.Windows.Forms.Label titluLb;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Panel containerButon;
     }
 }

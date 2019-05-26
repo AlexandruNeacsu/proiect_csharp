@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using Proiect.Controls.Card;
 
 namespace Proiect
 {
@@ -52,6 +53,16 @@ namespace Proiect
                 Form1 parent = (Form1) this.ParentForm;
                 parent.LoadLists();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.containerButon.Visible = false;
+
+            AddCard addCard = new AddCard(this.containerButon, this.id);
+
+            this.flowLayoutPanel1.Controls.Add(addCard);
+
         }
     }
 }
