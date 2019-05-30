@@ -4,23 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Proiect.Clase;
 
-namespace Proiect.Controls.Card
+namespace Proiect.Controls.Cards
 {
     class CardPreview : Button
     {
-        private int id;
-        private string nume;
-        private string descriere;
-        
-        public CardPreview(int id, string nume, string descriere) : base()
-        {
-            this.id = id;
-            this.nume = nume;
-            this.descriere = descriere;
+        Card card;
 
-            this.Name = "CardPreviewName:" + nume;
-            this.Text = nume;
+        public CardPreview(Clase.Card c) : base()
+        {
+            this.card = c;
+
+            this.Name = "CardPreviewName:" + c.Nume;
+            this.Text = c.Nume;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
 
             this.Click += this.ClickHandler;
@@ -29,7 +26,7 @@ namespace Proiect.Controls.Card
 
         private void ClickHandler(object sender, EventArgs e)
         {
-            Card card = new Card();
+            CardForm card = new CardForm(this.card);
 
             card.ShowDialog();
         }

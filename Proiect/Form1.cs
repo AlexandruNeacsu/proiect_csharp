@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Proiect.Controls.List;
 using Proiect.Controls.Auth;
 using System.Data.OleDb;
+using Proiect.Clase;
 
 namespace Proiect
 {
@@ -18,11 +19,12 @@ namespace Proiect
         static public string Provider = "Provider = Microsoft.ACE.OLEDB.16.0; Data Source = proiect_csharp.accdb";
 
         public string titlu = "Proiect C#";
-        
+        public Utilizator utilizator;
+
 
         public Form1()
         {
-            Login login = new Login();
+            Login login = new Login(utilizator);
 
             login.ShowDialog();
 
@@ -83,6 +85,11 @@ namespace Proiect
             {
                 connection.Close();
             }
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace Proiect.Controls.Card
+namespace Proiect.Controls.Cards
 {
     public partial class AddCard : UserControl
     {

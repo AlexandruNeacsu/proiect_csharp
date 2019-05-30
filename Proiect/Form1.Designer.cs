@@ -33,6 +33,7 @@
             this.selectableFlowLayoutPanel1 = new Proiect.Controls.SelectableFlowLayoutPanel();
             this.AddListButton = new System.Windows.Forms.Button();
             this.baraUtilizatori1 = new Proiect.BaraUtilizatori();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.selectableFlowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -44,15 +45,16 @@
             this.numeProiectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1748, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1311, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // numeProiectToolStripMenuItem
             // 
+            this.numeProiectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem});
             this.numeProiectToolStripMenuItem.Name = "numeProiectToolStripMenuItem";
-            this.numeProiectToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.numeProiectToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.numeProiectToolStripMenuItem.Text = "Meniu";
             // 
             // selectableFlowLayoutPanel1
@@ -60,19 +62,17 @@
             this.selectableFlowLayoutPanel1.AutoScroll = true;
             this.selectableFlowLayoutPanel1.Controls.Add(this.AddListButton);
             this.selectableFlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectableFlowLayoutPanel1.Location = new System.Drawing.Point(0, 77);
-            this.selectableFlowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.selectableFlowLayoutPanel1.Location = new System.Drawing.Point(0, 64);
             this.selectableFlowLayoutPanel1.Name = "selectableFlowLayoutPanel1";
-            this.selectableFlowLayoutPanel1.Size = new System.Drawing.Size(1748, 665);
+            this.selectableFlowLayoutPanel1.Size = new System.Drawing.Size(1311, 539);
             this.selectableFlowLayoutPanel1.TabIndex = 11;
             this.selectableFlowLayoutPanel1.WrapContents = false;
             // 
             // AddListButton
             // 
-            this.AddListButton.Location = new System.Drawing.Point(4, 4);
-            this.AddListButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddListButton.Location = new System.Drawing.Point(3, 3);
             this.AddListButton.Name = "AddListButton";
-            this.AddListButton.Size = new System.Drawing.Size(117, 28);
+            this.AddListButton.Size = new System.Drawing.Size(88, 23);
             this.AddListButton.TabIndex = 10;
             this.AddListButton.Text = "Adauga o lista";
             this.AddListButton.UseVisualStyleBackColor = true;
@@ -81,23 +81,29 @@
             // baraUtilizatori1
             // 
             this.baraUtilizatori1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baraUtilizatori1.Location = new System.Drawing.Point(0, 28);
-            this.baraUtilizatori1.Margin = new System.Windows.Forms.Padding(5);
+            this.baraUtilizatori1.Location = new System.Drawing.Point(0, 24);
+            this.baraUtilizatori1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.baraUtilizatori1.Name = "baraUtilizatori1";
-            this.baraUtilizatori1.Size = new System.Drawing.Size(1748, 49);
+            this.baraUtilizatori1.Size = new System.Drawing.Size(1311, 40);
             this.baraUtilizatori1.TabIndex = 8;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.ClientSize = new System.Drawing.Size(1748, 742);
+            this.ClientSize = new System.Drawing.Size(1311, 603);
             this.Controls.Add(this.selectableFlowLayoutPanel1);
             this.Controls.Add(this.baraUtilizatori1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
@@ -115,6 +121,7 @@
         private BaraUtilizatori baraUtilizatori1;
         private System.Windows.Forms.Button AddListButton;
         private Controls.SelectableFlowLayoutPanel selectableFlowLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
 

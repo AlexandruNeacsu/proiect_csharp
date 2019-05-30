@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proiect.Clase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,12 @@ namespace Proiect.Controls.Auth
 {
     public partial class Login : Form
     {
-        public Login()
+        Utilizator utilizator;
+
+        public Login(Utilizator utilizator)
         {
+            this.utilizator = utilizator;
+
             InitializeComponent();
         }
 
@@ -54,11 +59,21 @@ namespace Proiect.Controls.Auth
 
                         if(result == DialogResult.Cancel)
                         {
+                            reader.Close();
                             this.DialogResult = DialogResult.Cancel;
                         }
                     }
                     else
                     {
+                        reader.Read();
+
+                        int id = Convert.ToInt32(reader["id"].ToString());
+                        string nume = reader["nume"].ToString();
+
+                        utilizator = new Utilizator(id, nume);
+
+
+                        reader.Close();
                         this.DialogResult = DialogResult.OK;
                     }
                 }

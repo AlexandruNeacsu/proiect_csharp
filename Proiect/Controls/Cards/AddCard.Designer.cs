@@ -1,4 +1,4 @@
-﻿namespace Proiect.Controls.Card
+﻿namespace Proiect.Controls.Cards
 {
     partial class AddCard
     {

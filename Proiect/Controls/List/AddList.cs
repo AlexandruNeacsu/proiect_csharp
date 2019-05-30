@@ -27,6 +27,8 @@ namespace Proiect.Controls.List
         {
             string nume = this.textBox1.Text;
 
+            Form1 parent = (Form1)this.ParentForm;
+
             if (nume != "")
             {
                 OleDbConnection connection = new OleDbConnection(Form1.Provider);
@@ -39,9 +41,11 @@ namespace Proiect.Controls.List
                     connection.Open();
                     command.Transaction = connection.BeginTransaction();
 
-                    command.CommandText = "INSERT INTO liste (nume) VALUES (@nume)";
+                    command.CommandText = "INSERT INTO liste (nume, id_autor) VALUES (@nume, @autor)";
 
                     command.Parameters.Add("nume", OleDbType.Char).Value = nume;
+                    command.Parameters.Add("autor", OleDbType.Integer).Value = parent.utilizator.Id;
+
 
                     command.ExecuteNonQuery();
                     command.Transaction.Commit();
@@ -57,7 +61,6 @@ namespace Proiect.Controls.List
                     connection.Close();
                     
                     //refresh the layout panel
-                    Form1 parent = (Form1)this.ParentForm;
                     parent.LoadLists();
 
                     this.addListButton.Visible = true;

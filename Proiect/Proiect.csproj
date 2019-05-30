@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clase\Card.cs" />
+    <Compile Include="Clase\Comentariu.cs" />
+    <Compile Include="Clase\IDetalii.cs" />
+    <Compile Include="Clase\Lista.cs" />
+    <Compile Include="Clase\ObiectBD.cs" />
+    <Compile Include="Clase\Utilizator.cs" />
     <Compile Include="Controls\Auth\SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,19 +79,19 @@
     <Compile Include="Controls\BaraUtilizatori.Designer.cs">
       <DependentUpon>BaraUtilizatori.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Card\AddCard.cs">
+    <Compile Include="Controls\Cards\AddCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Card\AddCard.Designer.cs">
+    <Compile Include="Controls\Cards\AddCard.Designer.cs">
       <DependentUpon>AddCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Card\Card.cs">
+    <Compile Include="Controls\Cards\CardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Card\Card.Designer.cs">
-      <DependentUpon>Card.cs</DependentUpon>
+    <Compile Include="Controls\Cards\CardForm.Designer.cs">
+      <DependentUpon>CardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Card\CardPreview.cs">
+    <Compile Include="Controls\Cards\CardPreview.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\List\AddList.cs">
@@ -123,11 +129,11 @@
     <EmbeddedResource Include="Controls\BaraUtilizatori.resx">
       <DependentUpon>BaraUtilizatori.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Card\AddCard.resx">
+    <EmbeddedResource Include="Controls\Cards\AddCard.resx">
       <DependentUpon>AddCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Card\Card.resx">
-      <DependentUpon>Card.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Cards\CardForm.resx">
+      <DependentUpon>CardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\List\AddList.resx">
       <DependentUpon>AddList.cs</DependentUpon>

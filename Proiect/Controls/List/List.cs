@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using Proiect.Controls.Card;
+using Proiect.Controls.Cards;
+using Proiect.Clase;
 
 namespace Proiect
 {
@@ -88,8 +89,12 @@ namespace Proiect
                     int id = Convert.ToInt32(reader["id"].ToString());
                     string numeCard = reader["nume"].ToString();
                     string descriere = reader["descriere"].ToString();
+                    bool completat = Convert.ToBoolean(reader["completat"].ToString());
+                    int idLista = Convert.ToInt32(reader["id_lista"].ToString());
 
-                    CardPreview cardPreview = new CardPreview(id, numeCard, descriere);
+                    Card card = new Card(id, numeCard, descriere, completat, idLista);
+
+                    CardPreview cardPreview = new CardPreview(card);
 
                     this.flowLayoutPanel1.Controls.Add(cardPreview);
                 }
