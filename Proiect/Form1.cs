@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proiect.Controls.List;
-using Proiect.Controls;
+using Proiect.Controls.Auth;
 using System.Data.OleDb;
 
 namespace Proiect
@@ -22,6 +22,15 @@ namespace Proiect
 
         public Form1()
         {
+            Login login = new Login();
+
+            login.ShowDialog();
+
+            if (login.DialogResult == DialogResult.Cancel)
+            {
+                Environment.Exit(-1);
+            }
+
             InitializeComponent();
             this.baraUtilizatori1.SetTitlu(titlu);
             this.LoadLists();
