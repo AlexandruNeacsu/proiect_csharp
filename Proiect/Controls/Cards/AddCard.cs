@@ -43,7 +43,7 @@ namespace Proiect.Controls.Cards
                     command.CommandText = "INSERT INTO Cards (nume, id_lista) VALUES (@nume, @idLista) ";
 
                     command.Parameters.Add("nume", OleDbType.Char).Value = nume;
-                    command.Parameters.Add("nume", OleDbType.Integer).Value = this.idParinte;
+                    command.Parameters.Add("idLista", OleDbType.Integer).Value = this.idParinte;
 
                     command.ExecuteNonQuery();
                     command.Transaction.Commit();

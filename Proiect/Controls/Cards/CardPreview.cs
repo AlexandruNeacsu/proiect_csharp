@@ -16,7 +16,7 @@ namespace Proiect.Controls.Cards
         {
             this.card = c;
 
-            this.Name = "CardPreviewName:" + c.Nume;
+            this.Name = c.Id.ToString();
             this.Text = c.Nume;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
 
@@ -26,9 +26,12 @@ namespace Proiect.Controls.Cards
 
         private void ClickHandler(object sender, EventArgs e)
         {
-            CardForm card = new CardForm(this.card);
+            Form1 parent = (Form1) this.FindForm();
+
+            CardForm card = new CardForm(this.card, parent);
 
             card.ShowDialog();
         }
+
     }
 }

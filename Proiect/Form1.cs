@@ -24,7 +24,7 @@ namespace Proiect
 
         public Form1()
         {
-            Login login = new Login(utilizator);
+            Login login = new Login(this);
 
             login.ShowDialog();
 

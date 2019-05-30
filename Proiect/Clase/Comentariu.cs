@@ -20,5 +20,6 @@ namespace Proiect.Clase
             this.idCard = idCard;
             this.idUtilizator = idUtilizator;
         }
+
     }
 }

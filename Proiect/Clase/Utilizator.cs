@@ -13,9 +13,17 @@ namespace Proiect.Clase
 
         private int id;
 
-        public string Nume { get; set; }
+        private string nume;
 
-        public int Id { get; }
+        public string Nume
+        {
+            get { return nume; }
+            set { nume = value; }
+        }
+
+
+
+        public int Id { get => id; }
 
         public Utilizator(int id, string nume)
         {

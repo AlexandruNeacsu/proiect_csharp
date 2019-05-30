@@ -39,8 +39,9 @@
             this.listaLb = new System.Windows.Forms.Label();
             this.titluTb = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // DeleteButton
@@ -51,6 +52,7 @@
             this.DeleteButton.TabIndex = 27;
             this.DeleteButton.Text = "Sterge Card";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // addCommentBt
             // 
@@ -60,6 +62,7 @@
             this.addCommentBt.TabIndex = 25;
             this.addCommentBt.Text = "Adauga";
             this.addCommentBt.UseVisualStyleBackColor = true;
+            this.addCommentBt.Click += new System.EventHandler(this.addCommentBt_Click);
             // 
             // comentariuTb
             // 
@@ -94,6 +97,7 @@
             this.EditButton.TabIndex = 17;
             this.EditButton.Text = "Editeaza";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // label2
             // 
@@ -127,21 +131,21 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // flowLayoutPanel1
+            // dataGridView1
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(63, 322);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 139);
-            this.flowLayoutPanel1.TabIndex = 28;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(63, 311);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(363, 150);
+            this.dataGridView1.TabIndex = 29;
             // 
             // CardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 473);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.addCommentBt);
             this.Controls.Add(this.comentariuTb);
@@ -155,6 +159,7 @@
             this.Name = "CardForm";
             this.Text = "Card";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +177,6 @@
         private System.Windows.Forms.Label listaLb;
         private System.Windows.Forms.TextBox titluTb;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

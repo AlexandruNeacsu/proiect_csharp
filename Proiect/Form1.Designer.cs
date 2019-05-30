@@ -30,10 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.numeProiectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectableFlowLayoutPanel1 = new Proiect.Controls.SelectableFlowLayoutPanel();
             this.AddListButton = new System.Windows.Forms.Button();
             this.baraUtilizatori1 = new Proiect.BaraUtilizatori();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.selectableFlowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,13 @@
             this.numeProiectToolStripMenuItem.Name = "numeProiectToolStripMenuItem";
             this.numeProiectToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.numeProiectToolStripMenuItem.Text = "Meniu";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // selectableFlowLayoutPanel1
             // 
@@ -82,17 +89,10 @@
             // 
             this.baraUtilizatori1.Dock = System.Windows.Forms.DockStyle.Top;
             this.baraUtilizatori1.Location = new System.Drawing.Point(0, 24);
-            this.baraUtilizatori1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.baraUtilizatori1.Margin = new System.Windows.Forms.Padding(4);
             this.baraUtilizatori1.Name = "baraUtilizatori1";
             this.baraUtilizatori1.Size = new System.Drawing.Size(1311, 40);
             this.baraUtilizatori1.TabIndex = 8;
-            // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // Form1
             // 

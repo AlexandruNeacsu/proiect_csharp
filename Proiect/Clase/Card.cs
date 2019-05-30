@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,9 @@ namespace Proiect.Clase
         private bool completat;
         private int idLista;
 
-        public int IdLista{ get; }
+        public int Id { get => id; }
+
+        public int IdLista{ get => idLista; }
 
         public string Nume {
             get => nume;
@@ -26,7 +29,7 @@ namespace Proiect.Clase
         public string Descriere
         {
             get => descriere;
-            set => setStringField("Descriere", value);
+            set => setStringField("descriere", value);
         }
 
         public bool Completat
@@ -96,50 +99,18 @@ namespace Proiect.Clase
 
         }
 
-        public List<Comentariu> GetComentarii()
+        public DataSet GetComentarii()
         {
-            List<Comentariu> comentarii = new List<Comentariu>();
 
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
+            OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT u.nume, c.continut FROM Comentarii c INNER JOIN Utilizatori u ON c.id_utilizator = u.id WHERE id_card = " + this.id, connection);
 
-            string cmdText = "SELECT * FROM Comentarii WHERE id_card = " + this.id;
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet, "comentarii");
 
-            OleDbCommand command = new OleDbCommand(cmdText, connection);
+            connection.Close();
 
-            try
-            {
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
-
-
-                while (reader.Read())
-                {
-                    int id = Convert.ToInt32(reader["id"].ToString());
-                    string continut = reader["continut"].ToString();
-                    int idCard = Convert.ToInt32(reader["id_card"].ToString());
-                    int idUtilizator = Convert.ToInt32(reader["id_utilizator"].ToString());
-
-
-                    Comentariu comentariu = new Comentariu(id, continut, idCard, idUtilizator);
-
-                    comentarii.Add(comentariu);
-
-                }
-
-
-                reader.Close();
-                return comentarii;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            return dataSet;
         }
 
         public List<Utilizator> GetAutori()
@@ -198,15 +169,19 @@ namespace Proiect.Clase
 
             try
             {
+
                 connection.Open();
                 command.Transaction = connection.BeginTransaction();
 
-                command.CommandText = "UPDATE Cards SET " + columnName + " = @parametru";
+                command.CommandText = "UPDATE Cards SET " + columnName + " = @parametru WHERE id = @idCard";
 
                 command.Parameters.Add("parametru", OleDbType.Char).Value = valoare;
+                command.Parameters.Add("idCard", OleDbType.Integer).Value = this.id;
 
                 command.ExecuteNonQuery();
                 command.Transaction.Commit();
+
+                this.descriere = valoare;
 
             }
             catch (Exception ex)
@@ -224,7 +199,7 @@ namespace Proiect.Clase
         {
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
 
-            string cmdText = "SELECT * FROM Utilizatori WHERE id_utilizator = (SELECT id_utilizator FROM Cards WHERE id_card = ?)";
+            string cmdText = "SELECT * FROM Utilizatori WHERE id_utilizator = (SELECT id_utilizator FROM Liste WHERE id = @idLista)";
 
             OleDbCommand command = new OleDbCommand(cmdText, connection);
 
@@ -232,7 +207,7 @@ namespace Proiect.Clase
             {
                 connection.Open();
 
-                command.Parameters.Add("id_card", OleDbType.Integer).Value = this.id;
+                command.Parameters.Add("idLista", OleDbType.Integer).Value = this.IdLista;
 
                 OleDbDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -248,8 +223,7 @@ namespace Proiect.Clase
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return null;
+                throw ex;
             }
             finally
             {
@@ -302,11 +276,11 @@ namespace Proiect.Clase
 
             OleDbCommand command = new OleDbCommand(cmdText, connection);
 
-            command.ExecuteNonQuery();
 
             try
             {
                 connection.Open();
+                command.ExecuteNonQuery();  
 
             }
             catch (Exception ex)

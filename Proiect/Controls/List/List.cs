@@ -94,6 +94,8 @@ namespace Proiect
 
                     Card card = new Card(id, numeCard, descriere, completat, idLista);
 
+                    card.deleted += this.onCardDelete;
+
                     CardPreview cardPreview = new CardPreview(card);
 
                     this.flowLayoutPanel1.Controls.Add(cardPreview);
@@ -113,6 +115,17 @@ namespace Proiect
             {
                 connection.Close();
             }
+        }
+
+
+        private void onCardDelete(Object sender, EventArgs args)
+        {
+            Card card = (Card)sender;
+
+            CardPreview preview = (CardPreview) this.flowLayoutPanel1.Controls.Find(card.Id.ToString(), false)[0];
+
+            this.flowLayoutPanel1.Controls.Remove(preview);
+
         }
     }
 }

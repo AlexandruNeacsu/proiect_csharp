@@ -14,11 +14,11 @@ namespace Proiect.Controls.Auth
 {
     public partial class Login : Form
     {
-        Utilizator utilizator;
+        Form1 parinte;
 
-        public Login(Utilizator utilizator)
+        public Login(Form1 parinte)
         {
-            this.utilizator = utilizator;
+            this.parinte = parinte;
 
             InitializeComponent();
         }
@@ -70,7 +70,7 @@ namespace Proiect.Controls.Auth
                         int id = Convert.ToInt32(reader["id"].ToString());
                         string nume = reader["nume"].ToString();
 
-                        utilizator = new Utilizator(id, nume);
+                        parinte.utilizator = new Utilizator(id, nume);
 
 
                         reader.Close();
