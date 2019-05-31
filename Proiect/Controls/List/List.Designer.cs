@@ -38,6 +38,8 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportaTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportaXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printeazaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previozonarePrintareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.containerPanel.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -109,30 +111,46 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
             this.exportaTextToolStripMenuItem,
-            this.exportaXMLToolStripMenuItem});
+            this.exportaXMLToolStripMenuItem,
+            this.printeazaToolStripMenuItem,
+            this.previozonarePrintareToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(187, 136);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // exportaTextToolStripMenuItem
             // 
             this.exportaTextToolStripMenuItem.Name = "exportaTextToolStripMenuItem";
-            this.exportaTextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportaTextToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exportaTextToolStripMenuItem.Text = "Exporta text";
             this.exportaTextToolStripMenuItem.Click += new System.EventHandler(this.exportaTextToolStripMenuItem_Click);
             // 
             // exportaXMLToolStripMenuItem
             // 
             this.exportaXMLToolStripMenuItem.Name = "exportaXMLToolStripMenuItem";
-            this.exportaXMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportaXMLToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.exportaXMLToolStripMenuItem.Text = "Exporta XML";
             this.exportaXMLToolStripMenuItem.Click += new System.EventHandler(this.exportaXMLToolStripMenuItem_Click);
+            // 
+            // printeazaToolStripMenuItem
+            // 
+            this.printeazaToolStripMenuItem.Name = "printeazaToolStripMenuItem";
+            this.printeazaToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.printeazaToolStripMenuItem.Text = "Printeaza";
+            this.printeazaToolStripMenuItem.Click += new System.EventHandler(this.printeazaToolStripMenuItem_Click);
+            // 
+            // previozonarePrintareToolStripMenuItem
+            // 
+            this.previozonarePrintareToolStripMenuItem.Name = "previozonarePrintareToolStripMenuItem";
+            this.previozonarePrintareToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.previozonarePrintareToolStripMenuItem.Text = "Previozonare printare";
+            this.previozonarePrintareToolStripMenuItem.Click += new System.EventHandler(this.previozonarePrintareToolStripMenuItem_Click);
             // 
             // List
             // 
@@ -167,5 +185,7 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ToolStripMenuItem exportaTextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportaXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printeazaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previozonarePrintareToolStripMenuItem;
     }
 }

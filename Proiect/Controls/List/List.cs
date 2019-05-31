@@ -12,12 +12,18 @@ using Proiect.Controls.Cards;
 using Proiect.Clase;
 using System.IO;
 using System.Xml;
+using System.Drawing.Printing;
 
 namespace Proiect
 {
     public partial class List : UserControl
     {
         Lista list;
+
+        private Font printFont;
+        private PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+        public PrintDocument pd;
+        StreamReader streamToPrint = null;
 
         public List(Lista list)
         {
@@ -93,28 +99,7 @@ namespace Proiect
 
             if(dialog.ShowDialog() == DialogResult.OK)
             {
-                FileStream stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
-                StreamWriter sw = new StreamWriter(stream);
-
-                string line = $"{list.Id},{list.Nume},{list.IdAutor}";
-                sw.WriteLine(line);
-
-                foreach (Object obj in this.flowLayoutPanel1.Controls)
-                {
-                    try
-                    {
-                        CardPreview preview = (CardPreview)obj;
-
-                        Card card = preview.card;
-
-                        line = $"   Id:{card.Id}, Nume: {card.Nume}, Descriere: {card.Descriere}";
-                        sw.WriteLine(line);
-                    }
-                    catch (Exception){}
-                }
-
-                sw.Close();
-                stream.Close();
+                creareTextFile(dialog.FileName);
             }
         }
 
@@ -174,6 +159,118 @@ namespace Proiect
 
                 writer.Close();
             }
+        }
+
+        private void printeazaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                creareTextFile("temp\\print.txt");
+                streamToPrint = new StreamReader("temp\\print.txt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            try
+            {
+                printFont = new Font("Arial", 12);
+                pd = new PrintDocument();
+                this.pd.PrintPage += new PrintPageEventHandler(this.PrintPage);
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            streamToPrint.Close();
+        }
+
+        private void previozonarePrintareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pd = new PrintDocument();
+            printFont = new Font("Arial", 16);
+
+            try
+            {
+                creareTextFile("temp\\print.txt");
+                streamToPrint = new StreamReader("temp\\print.txt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+            this.pd.PrintPage += new PrintPageEventHandler(this.PrintPage);
+            printPreviewDialog.Document = pd;
+
+            printPreviewDialog.ShowDialog();
+            streamToPrint.Close();
+        }
+
+        private void PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            string linie_txt = "Text de scris in documnet";
+
+            SolidBrush pns = new SolidBrush(Color.Red);
+
+            ev.HasMorePages = true;     //daca true => apeleaza din nou PrintPage cand sunt pagini
+            float linesPerPage = 0;
+            float yPos = 0;
+            int count = 10;
+
+            float leftMargin = ev.MarginBounds.Left;
+            float topMargin = ev.MarginBounds.Top;
+
+            linie_txt = null;
+
+            linesPerPage = ev.MarginBounds.Height / printFont.GetHeight(ev.Graphics);
+
+            while (count < linesPerPage && (linie_txt = streamToPrint.ReadLine()) != null)
+            {
+                yPos = topMargin + (count * printFont.GetHeight(ev.Graphics));
+                ev.Graphics.DrawString(linie_txt, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
+                count++;
+            }
+
+            if (linie_txt != null)
+            {
+                ev.HasMorePages = true;
+            }
+            else
+            {
+                ev.HasMorePages = false;
+            }
+        }
+
+        void creareTextFile(string path)
+        {
+            FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(stream);
+
+            string line = $"{list.Id},{list.Nume},{list.IdAutor}";
+            sw.WriteLine(line);
+
+            foreach (Object obj in this.flowLayoutPanel1.Controls)
+            {
+                try
+                {
+                    CardPreview preview = (CardPreview)obj;
+
+                    Card card = preview.card;
+
+                    line = $"   Id:{card.Id}, Nume: {card.Nume}, Descriere: {card.Descriere}";
+                    sw.WriteLine(line);
+                }
+                catch (Exception) { }
+            }
+
+            sw.Close();
+            stream.Close();
         }
     }
 }
