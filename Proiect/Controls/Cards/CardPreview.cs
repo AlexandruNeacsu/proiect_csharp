@@ -12,7 +12,7 @@ namespace Proiect.Controls.Cards
     {
         public Card card;
 
-        public CardPreview(Clase.Card c) : base()
+        public CardPreview(Card c) : base()
         {
             this.card = c;
 

@@ -65,8 +65,15 @@ namespace Proiect.Clase
 
         public string Descriere
         {
-            get => descriere;
-            set => setStringField("descriere", value);
+            get
+            {
+                return descriere;
+            }
+            set
+            {
+                this.descriere = value;
+                setStringField("descriere", value);
+            }
         }
 
         public bool Completat
@@ -226,8 +233,6 @@ namespace Proiect.Clase
 
                 command.ExecuteNonQuery();
                 command.Transaction.Commit();
-
-                this.descriere = valoare;
 
             }
             catch (Exception ex)

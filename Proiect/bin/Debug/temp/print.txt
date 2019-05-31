@@ -1,3 +1,3 @@
-26,ccccc  cc,2
-   Id:3, Nume: jkhkj, Descriere: 123
-   Id:4, Nume: ssss, Descriere: 
+36,Baza de date,2
+   Id:14, Nume: Proiect, Descriere: 
+   Id:15, Nume: Test, Descriere: 
