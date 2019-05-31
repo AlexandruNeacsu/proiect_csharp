@@ -67,6 +67,7 @@ namespace Proiect.Controls.Cards
                     command.Transaction.Commit();
 
                     this.dataGridView1.DataSource = this.card.GetComentarii();
+                    this.comentariuTb.Clear();
 
                 }
                 catch (Exception ex)

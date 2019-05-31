@@ -141,7 +141,13 @@ namespace Proiect.Clase
         {
 
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
-            OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT u.nume, c.continut FROM Comentarii c INNER JOIN Utilizatori u ON c.id_utilizator = u.id WHERE id_card = " + this.id, connection);
+
+            string sql = "SELECT u.nume, c.continut FROM Comentarii c " +
+                "INNER JOIN Utilizatori u ON c.id_utilizator = u.id " +
+                $"WHERE id_card = {this.id} " + 
+                "ORDER BY c.id";    //pastram ordinea adaugari
+
+            OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
 
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet, "comentarii");
