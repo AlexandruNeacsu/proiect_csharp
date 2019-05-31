@@ -135,6 +135,9 @@
     <EmbeddedResource Include="Controls\Cards\CardForm.resx">
       <DependentUpon>CardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cards\CardPreview.resx">
+      <DependentUpon>CardPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\List\AddList.resx">
       <DependentUpon>AddList.cs</DependentUpon>
     </EmbeddedResource>

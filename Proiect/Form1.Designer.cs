@@ -60,12 +60,13 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // selectableFlowLayoutPanel1
             // 
+            this.selectableFlowLayoutPanel1.AllowDrop = true;
             this.selectableFlowLayoutPanel1.AutoScroll = true;
             this.selectableFlowLayoutPanel1.Controls.Add(this.AddListButton);
             this.selectableFlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;

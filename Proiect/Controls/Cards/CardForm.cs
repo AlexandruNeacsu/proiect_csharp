@@ -88,7 +88,7 @@ namespace Proiect.Controls.Cards
             {
 
                 this.card.Descriere = descriere;
-                //this.dataGridView1.DataSource = this.card.GetComentarii();
+                MessageBox.Show("Succes!");
             }
         }
 

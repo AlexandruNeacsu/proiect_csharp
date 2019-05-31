@@ -22,7 +22,7 @@ namespace Proiect
         public Utilizator utilizator;
 
 
-        public Form1()
+        private void ShowLogin()
         {
             Login login = new Login(this);
 
@@ -32,6 +32,11 @@ namespace Proiect
             {
                 Environment.Exit(-1);
             }
+        }
+
+        public Form1()
+        {
+            ShowLogin();
 
             InitializeComponent();
             this.baraUtilizatori1.SetTitlu(titlu);
@@ -49,10 +54,9 @@ namespace Proiect
         {
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
 
-            string cmdText = "SELECT id,nume FROM Liste";
+            string cmdText = "SELECT * FROM Liste";
 
             OleDbCommand command = new OleDbCommand(cmdText, connection);
-
             try
             {
                 connection.Open();
@@ -65,8 +69,12 @@ namespace Proiect
                 {
                     int id = Convert.ToInt32(reader["id"].ToString());
                     string listName = reader["nume"].ToString();
+                    int idAutor = Convert.ToInt32(reader["id_autor"].ToString());
 
-                    List list = new List(id, listName);
+                    Lista lista = new Lista(id, listName, idAutor);
+                    lista.deleted += this.onListDelete;
+
+                    List list = new List(lista);
 
                     this.selectableFlowLayoutPanel1.Controls.Add(list);
                 }
@@ -79,7 +87,7 @@ namespace Proiect
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
             finally
             {
@@ -87,9 +95,21 @@ namespace Proiect
             }
         }
 
+        private void onListDelete(Object sender, EventArgs args)
+        {
+            Lista lista = (Lista) sender;
+
+            List list = (List)this.selectableFlowLayoutPanel1.Controls.Find(lista.Id.ToString(), false)[0];
+
+            this.selectableFlowLayoutPanel1.Controls.Remove(list);
+
+        }
+
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            ShowLogin();
+            this.Visible = true;
         }
     }
 }

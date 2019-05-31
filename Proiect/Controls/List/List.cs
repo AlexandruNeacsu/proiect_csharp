@@ -10,59 +10,37 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Proiect.Controls.Cards;
 using Proiect.Clase;
+using System.IO;
+using System.Xml;
 
 namespace Proiect
 {
     public partial class List : UserControl
     {
-        private int id;
-        private string nume;
+        Lista list;
 
-        public List(int id, string nume)
+        public List(Lista list)
         {
-            this.id = id;
-            this.nume = nume;
+            this.list = list;
 
             InitializeComponent();
 
-            this.titluLb.Text = nume;
+            this.Name = list.Id.ToString();
+            this.titluLb.Text = list.Nume;
 
             this.LoadCards();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OleDbConnection connection = new OleDbConnection(Form1.Provider);
-
-            string sql = "DELETE FROM Liste WHERE id = " + this.id;
-
-            OleDbCommand command = new OleDbCommand(sql, connection);
-
-            try
-            {
-                connection.Open();
-
-                command.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-                //reload the lists
-                Form1 parent = (Form1) this.ParentForm;
-                parent.LoadLists();
-            }
+            this.list.Delete();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.containerButon.Visible = false;
+            this.containerPanel.Visible = false;
 
-            AddCard addCard = new AddCard(this.containerButon, this.id);
+            AddCard addCard = new AddCard(this.containerPanel, this.list.Id);
 
             this.flowLayoutPanel1.Controls.Add(addCard);
 
@@ -70,51 +48,21 @@ namespace Proiect
 
         public void LoadCards()
         {
-            OleDbConnection connection = new OleDbConnection(Form1.Provider);
 
-            string cmdText = "SELECT * FROM Cards WHERE id_lista = " + this.id;
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.Controls.Clear();
 
-            OleDbCommand command = new OleDbCommand(cmdText, connection);
-
-            try
+            foreach (Card card in this.list.GetCards())
             {
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
+                card.deleted += this.onCardDelete;
 
-                this.flowLayoutPanel1.SuspendLayout();
-                this.flowLayoutPanel1.Controls.Clear();
+                CardPreview cardPreview = new CardPreview(card);
 
-                while (reader.Read())
-                {
-                    int id = Convert.ToInt32(reader["id"].ToString());
-                    string numeCard = reader["nume"].ToString();
-                    string descriere = reader["descriere"].ToString();
-                    bool completat = Convert.ToBoolean(reader["completat"].ToString());
-                    int idLista = Convert.ToInt32(reader["id_lista"].ToString());
-
-                    Card card = new Card(id, numeCard, descriere, completat, idLista);
-
-                    card.deleted += this.onCardDelete;
-
-                    CardPreview cardPreview = new CardPreview(card);
-
-                    this.flowLayoutPanel1.Controls.Add(cardPreview);
-                }
-
-
-                reader.Close();
-
-                this.flowLayoutPanel1.Controls.Add(this.containerButon);
-                this.flowLayoutPanel1.ResumeLayout();
+                this.flowLayoutPanel1.Controls.Add(cardPreview);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
+
+            this.flowLayoutPanel1.Controls.Add(this.containerPanel);
+            this.flowLayoutPanel1.ResumeLayout();
         }
 
 
@@ -126,6 +74,100 @@ namespace Proiect
 
             this.flowLayoutPanel1.Controls.Remove(preview);
 
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            this.list.Delete();
+        }
+
+        private void exportaTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.Filter = "Text files (*.txt) | *.txt";
+
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(stream);
+
+                string line = $"{list.Id},{list.Nume},{list.IdAutor}";
+                sw.WriteLine(line);
+
+                foreach (Object obj in this.flowLayoutPanel1.Controls)
+                {
+                    try
+                    {
+                        CardPreview preview = (CardPreview)obj;
+
+                        Card card = preview.card;
+
+                        line = $"   Id:{card.Id}, Nume: {card.Nume}, Descriere: {card.Descriere}";
+                        sw.WriteLine(line);
+                    }
+                    catch (Exception){}
+                }
+
+                sw.Close();
+                stream.Close();
+            }
+        }
+
+        private void List_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void List_DragDrop(object sender, DragEventArgs e)
+        {
+            Card card = (Card)e.Data.GetData(typeof(Card));
+
+            card.IdLista = this.list.Id;
+
+            Form1 parent = (Form1) this.FindForm();
+            parent.LoadLists();
+        }
+
+        private void exportaXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.Filter = "XML files (*.xml) | *.xml";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+
+                XmlWriter writer = XmlWriter.Create(dialog.FileName, settings);
+
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Lista");
+                writer.WriteAttributeString("id", this.list.Id.ToString());
+                writer.WriteAttributeString("nume", this.list.Nume);
+
+                foreach (Card card in this.list.GetCards())
+                {
+                    writer.WriteStartElement("id");
+                    writer.WriteValue(card.Id.ToString());
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement("nume");
+                    writer.WriteValue(card.Nume);
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement("continut");
+                    writer.WriteValue(card.Descriere);
+                    writer.WriteEndElement();
+
+                }
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+
+                writer.Close();
+            }
         }
     }
 }

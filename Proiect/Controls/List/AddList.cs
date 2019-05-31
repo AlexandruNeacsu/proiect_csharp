@@ -61,10 +61,11 @@ namespace Proiect.Controls.List
                     connection.Close();
                     
                     //refresh the layout panel
-                    parent.LoadLists();
 
                     this.addListButton.Visible = true;
                     this.Dispose();
+
+                    parent.LoadLists();
                 }
 
             }

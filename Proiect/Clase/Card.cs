@@ -19,7 +19,43 @@ namespace Proiect.Clase
 
         public int Id { get => id; }
 
-        public int IdLista{ get => idLista; }
+        public int IdLista{
+            get => idLista;
+            set
+            {
+                OleDbConnection connection = new OleDbConnection(Form1.Provider);
+                OleDbCommand command = new OleDbCommand();
+
+                command.Connection = connection;
+
+                try
+                {
+
+                    connection.Open();
+                    command.Transaction = connection.BeginTransaction();
+
+                    command.CommandText = "UPDATE Cards SET id_lista = @parametru WHERE id = @idCard";
+
+                    command.Parameters.Add("parametru", OleDbType.Integer).Value = value;
+                    command.Parameters.Add("idCard", OleDbType.Integer).Value = this.id;
+
+                    command.ExecuteNonQuery();
+                    command.Transaction.Commit();
+
+                    this.idLista = value;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    command.Transaction.Rollback();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
 
         public string Nume {
             get => nume;
@@ -285,7 +321,7 @@ namespace Proiect.Clase
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
             finally
             {

@@ -10,7 +10,7 @@ namespace Proiect.Controls.Cards
 {
     class CardPreview : Button
     {
-        Card card;
+        public Card card;
 
         public CardPreview(Clase.Card c) : base()
         {
@@ -20,6 +20,8 @@ namespace Proiect.Controls.Cards
             this.Text = c.Nume;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
 
+
+            this.MouseDown += this.CardPreview_MouseDown;
             this.Click += this.ClickHandler;
 
         }
@@ -33,5 +35,23 @@ namespace Proiect.Controls.Cards
             card.ShowDialog();
         }
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // CardPreview
+            // 
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CardPreview_MouseDown);
+            this.ResumeLayout(false);
+
+        }
+
+        private void CardPreview_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (ModifierKeys.HasFlag(Keys.Control))
+            {
+                DoDragDrop(this.card, DragDropEffects.Move);
+            }
+        }
     }
 }
