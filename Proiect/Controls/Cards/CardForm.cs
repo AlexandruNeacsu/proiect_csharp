@@ -32,6 +32,12 @@ namespace Proiect.Controls.Cards
             this.dataGridView1.AutoGenerateColumns = true;
             this.dataGridView1.DataSource = card.GetComentarii();
             this.dataGridView1.DataMember = "comentarii";
+
+            //prevenim reincarcarea tuturor listelor daca checkboxul nu este selectat
+            if (card.Completat)
+            {
+                this.checkBox1.Checked = card.Completat;
+            }
         }
 
         private void addCommentBt_Click(object sender, EventArgs e)
@@ -94,7 +100,22 @@ namespace Proiect.Controls.Cards
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             this.card.Delete();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                this.card.Completat = true;
+            }
+            else
+            {
+                this.card.Completat = false;
+            }
+
+            parent.LoadLists();
         }
     }
 }

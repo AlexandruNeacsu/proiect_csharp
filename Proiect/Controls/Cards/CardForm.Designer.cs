@@ -40,6 +40,7 @@
             this.titluTb = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +57,7 @@
             // 
             // addCommentBt
             // 
-            this.addCommentBt.Location = new System.Drawing.Point(63, 273);
+            this.addCommentBt.Location = new System.Drawing.Point(63, 308);
             this.addCommentBt.Name = "addCommentBt";
             this.addCommentBt.Size = new System.Drawing.Size(75, 23);
             this.addCommentBt.TabIndex = 25;
@@ -66,7 +67,7 @@
             // 
             // comentariuTb
             // 
-            this.comentariuTb.Location = new System.Drawing.Point(63, 213);
+            this.comentariuTb.Location = new System.Drawing.Point(63, 248);
             this.comentariuTb.Multiline = true;
             this.comentariuTb.Name = "comentariuTb";
             this.comentariuTb.Size = new System.Drawing.Size(363, 54);
@@ -75,7 +76,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(60, 196);
+            this.label4.Location = new System.Drawing.Point(60, 231);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 23;
@@ -83,7 +84,7 @@
             // 
             // descriereTb
             // 
-            this.descriereTb.Location = new System.Drawing.Point(63, 87);
+            this.descriereTb.Location = new System.Drawing.Point(63, 122);
             this.descriereTb.Multiline = true;
             this.descriereTb.Name = "descriereTb";
             this.descriereTb.Size = new System.Drawing.Size(363, 54);
@@ -91,7 +92,7 @@
             // 
             // EditButton
             // 
-            this.EditButton.Location = new System.Drawing.Point(63, 147);
+            this.EditButton.Location = new System.Drawing.Point(63, 182);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(75, 23);
             this.EditButton.TabIndex = 17;
@@ -102,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(60, 71);
+            this.label2.Location = new System.Drawing.Point(60, 106);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 16;
@@ -135,16 +136,28 @@
             // 
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 311);
+            this.dataGridView1.Location = new System.Drawing.Point(63, 346);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(363, 150);
             this.dataGridView1.TabIndex = 29;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(63, 76);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 31;
+            this.checkBox1.Text = "Completat";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // CardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 473);
+            this.ClientSize = new System.Drawing.Size(600, 508);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.addCommentBt);
@@ -178,5 +191,6 @@
         private System.Windows.Forms.TextBox titluTb;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

@@ -18,7 +18,15 @@ namespace Proiect.Controls.Cards
 
             this.Name = c.Id.ToString();
             this.Text = c.Nume;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+
+            if (card.Completat)
+            {
+                this.BackColor = System.Drawing.SystemColors.ControlDark;
+            }
+            else
+            {
+                this.BackColor = System.Drawing.SystemColors.ControlLight;
+            }
 
 
             this.MouseDown += this.CardPreview_MouseDown;

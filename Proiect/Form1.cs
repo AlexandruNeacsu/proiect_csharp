@@ -16,6 +16,7 @@ namespace Proiect
 {
     public partial class Form1 : Form
     {
+        //pentru a folosi in diversele apeluri la BD
         static public string Provider = "Provider = Microsoft.ACE.OLEDB.16.0; Data Source = proiect_csharp.accdb";
 
         public string titlu = "Proiect C#";
@@ -30,7 +31,8 @@ namespace Proiect
 
             if (login.DialogResult == DialogResult.Cancel)
             {
-                Environment.Exit(-1);
+                //daca user alege cancel, inchide aplicatia
+                Environment.Exit(-1);   //In constructor nu putem folosi Aplication.Exit
             }
         }
 
@@ -52,6 +54,7 @@ namespace Proiect
 
         public void LoadLists()
         {
+            //incarca toate listelele din BD in layout panel
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
 
             string cmdText = "SELECT * FROM Liste";
@@ -107,6 +110,7 @@ namespace Proiect
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //ascunde formularul cand user da logout
             this.Visible = false;
             ShowLogin();
             this.Visible = true;

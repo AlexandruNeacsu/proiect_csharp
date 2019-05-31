@@ -23,6 +23,7 @@ namespace Proiect.Clase
             get => idLista;
             set
             {
+                //daca vrem sa modificam ID, schimbam si in BD
                 OleDbConnection connection = new OleDbConnection(Form1.Provider);
                 OleDbCommand command = new OleDbCommand();
 
@@ -83,9 +84,9 @@ namespace Proiect.Clase
                     connection.Open();
                     command.Transaction = connection.BeginTransaction();
 
-                    command.CommandText = "UPDATE Cards SET completat = @completat";
+                    command.CommandText = "UPDATE Cards SET completat = @completat WHERE id = " + this.id; ;
 
-                    command.Parameters.Add("completat", OleDbType.Char).Value = value;
+                    command.Parameters.Add("completat", OleDbType.Boolean).Value = value;
 
                     command.ExecuteNonQuery();
                     command.Transaction.Commit();
@@ -126,6 +127,7 @@ namespace Proiect.Clase
 
         public object Clone()
         {
+            // deep copy
             return new Card(this.id, this.nume, this.descriere, this.completat, this.IdLista);
         }
 
@@ -198,6 +200,8 @@ namespace Proiect.Clase
 
         void setStringField(string columnName, string valoare)
         {
+            //modificam atat campul obiectului, cat si valoarea din BD
+
             OleDbConnection connection = new OleDbConnection(Form1.Provider);
             OleDbCommand command = new OleDbCommand();
 

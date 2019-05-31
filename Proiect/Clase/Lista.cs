@@ -59,6 +59,7 @@ namespace Proiect.Clase
             {
                 connection.Close();
 
+                //apeleaza toti abonati;
                 this.onDeleted(this, EventArgs.Empty);
             }
         }

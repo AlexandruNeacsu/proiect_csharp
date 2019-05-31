@@ -38,6 +38,7 @@ namespace Proiect
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //inlocuieste butonul de adaugare cu un alt control
             this.containerPanel.Visible = false;
 
             AddCard addCard = new AddCard(this.containerPanel, this.list.Id);
@@ -48,7 +49,8 @@ namespace Proiect
 
         public void LoadCards()
         {
-
+            //opreste layout panel din a face calculele pentru a determina pozitia obiectului inserat
+            //imbunatateste performanta
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.Controls.Clear();
 
@@ -61,6 +63,7 @@ namespace Proiect
                 this.flowLayoutPanel1.Controls.Add(cardPreview);
             }
 
+            //adauga la sfarsit butonul de "adauga card"
             this.flowLayoutPanel1.Controls.Add(this.containerPanel);
             this.flowLayoutPanel1.ResumeLayout();
         }
@@ -68,6 +71,7 @@ namespace Proiect
 
         private void onCardDelete(Object sender, EventArgs args)
         {
+            //gasete cardul ce a fost sters, si scoate din flowlayout pentru a sincroniza cu BD
             Card card = (Card)sender;
 
             CardPreview preview = (CardPreview) this.flowLayoutPanel1.Controls.Find(card.Id.ToString(), false)[0];
@@ -126,6 +130,8 @@ namespace Proiect
             card.IdLista = this.list.Id;
 
             Form1 parent = (Form1) this.FindForm();
+
+            //reincarca toate listele, pentru a vizualiza corect modificarea
             parent.LoadLists();
         }
 
